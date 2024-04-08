@@ -1,6 +1,20 @@
 const fs = require("fs");
 
-// Lost all notes
+// print the given note content
+const readNote = (title) => {
+  const notes = loadNotes();
+  const noteToRead = notes.find((note) => {
+    return note.title === title;
+  });
+  // If the note wasn't found
+  if (!noteToRead) {
+    console.log(`No such note with title of "${title}". Try again!`);
+  } else {
+    console.log(`Note: ${noteToRead.title}\nBody: ${noteToRead.body}`);
+  }
+};
+
+// List all notes
 const listNotes = () => {
   const notes = loadNotes();
   console.log("Your notes:");
@@ -12,12 +26,12 @@ const listNotes = () => {
 // Add a note to the notes.json file
 const addNote = (title, body) => {
   const notes = loadNotes();
-  const duplicateNotes = notes.filter((note) => {
+  const duplicateNote = notes.find((note) => {
     return note.title === title;
   });
 
   // if the title is taken
-  if (duplicateNotes.length !== 0) {
+  if (duplicateNote) {
     console.log(`Note title "${title}" is taken!`);
   } else {
     notes.push({
@@ -61,4 +75,4 @@ const loadNotes = () => {
   }
 };
 
-module.exports = { listNotes, addNote, removeNote };
+module.exports = { readNote, listNotes, addNote, removeNote };
