@@ -17,7 +17,7 @@ yargs.command({
       type: "string",
     },
   },
-  handler: function (argv) {
+  handler: (argv) => {
     addNote(argv.title, argv.body);
   },
 });
@@ -32,7 +32,7 @@ yargs.command({
       type: "string",
     },
   },
-  handler: function (argv) {
+  handler: (argv) => {
     removeNote(argv.title);
   },
 });
