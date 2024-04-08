@@ -1,13 +1,18 @@
 const fs = require("fs");
 
-const getNotes = () => {
-  return "Your notes...";
+// Lost all notes
+const listNotes = () => {
+  const notes = loadNotes();
+  console.log("Your notes:");
+  notes.forEach((note) => {
+    console.log(note.title);
+  });
 };
 
 // Add a note to the notes.json file
 const addNote = (title, body) => {
   const notes = loadNotes();
-  const duplicateNotes = notes.filter(function (note) {
+  const duplicateNotes = notes.filter((note) => {
     return note.title === title;
   });
 
@@ -27,7 +32,7 @@ const addNote = (title, body) => {
 // Remove the given note from the notes.json file
 const removeNote = (title) => {
   const notes = loadNotes();
-  const notesToKeep = notes.filter(function (note) {
+  const notesToKeep = notes.filter((note) => {
     return note.title !== title;
   });
   // If the notes list wasn't changed
@@ -56,4 +61,4 @@ const loadNotes = () => {
   }
 };
 
-module.exports = { getNotes, addNote, removeNote };
+module.exports = { listNotes, addNote, removeNote };

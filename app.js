@@ -1,5 +1,5 @@
 const yargs = require("yargs");
-const { getNotes, addNote, removeNote } = require("./notes.js");
+const { listNotes, addNote, removeNote } = require("./notes.js");
 
 // Create add command
 yargs.command({
@@ -25,6 +25,7 @@ yargs.command({
 // Create remove command
 yargs.command({
   command: "remove",
+  describe: "remove a note",
   builder: {
     title: {
       describe: "Note title",
@@ -41,8 +42,8 @@ yargs.command({
 yargs.command({
   command: "list",
   describe: "Listing out all notes",
-  handler: function () {
-    console.log("Listing out all notes...");
+  handler: () => {
+    listNotes();
   },
 });
 
